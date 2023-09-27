@@ -4,8 +4,6 @@ function ContactCard(props) {
 
     return (
         <>
-            <p className="text-success">ContactCard</p>
-
             {
                 Object.keys(props.user).length > 0 &&
                 <div className="card shadow-lg sticky-top">
@@ -20,7 +18,6 @@ function ContactCard(props) {
                             <li className="list-group-item">Email :{user.email}</li>
                             <li className="list-group-item">Phone :{user.phone}</li>
                             <li className="list-group-item">Location:{user.location}</li>
-
                         </ul>
                     </div>
                 </div>

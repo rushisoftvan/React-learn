@@ -76,7 +76,7 @@ function ContactList(props) {
 
     return (
         <>
-            <p className="text-success">ContactList</p>
+
             <table className="table table-hover table-bordered">
                 <thead className="bg-dark text-center">
                 <tr>

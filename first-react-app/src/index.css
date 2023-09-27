@@ -15,3 +15,10 @@ code {
   height: 100px;
   margin-top:10px;
 }
+.header{
+  float: left;
+  width: 50%;
+  float: left;
+  font-size: larger;
+
+}
