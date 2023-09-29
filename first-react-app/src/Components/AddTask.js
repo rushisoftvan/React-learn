@@ -3,29 +3,32 @@ import {useState} from "react";
 function AddTask(props) {
 
     const[newTask,setNewTask] = useState({
-           taskName:"",
-            dayAndTime:""
+           id:"",
+           text:"",
+            day:""
     });
 
-    function setTaskName(e){
+    function settext(e){
 
         setNewTask({
-           taskName: e.target.value,
-           dayAndTime: newTask.dayAndTime
+            id:"",
+           text: e.target.value,
+           day: newTask.day
         });
     }
 
-    function setDayAndTime(e){
+    function setday(e){
 
         setNewTask({
-            taskName: newTask.taskName,
-            dayAndTime:e.target.value
+            id:"",
+            text: newTask.text,
+            day:e.target.value
         });
     }
     function addNewTask(e){
         e.preventDefault()
        props.addTask(newTask);
-
+        console.log(newTask)
     }
 
     return (
@@ -34,11 +37,11 @@ function AddTask(props) {
                 <from>
                     <div  className={"from"}>
                         <label>Task :</label>
-                        <input type="text" className="form-control" placeholder="Add Task Here" onChange={setTaskName} />
+                        <input type="text" className="form-control" placeholder="Add Task Here" onChange={settext} />
                     </div>
                     <div className={"from"}><br/>
                         <label>Day & Time :</label>
-                        <input type="text" className="form-control" placeholder="Add day and time here" onChange={setDayAndTime}/>
+                        <input type="text" className="form-control" placeholder="Add day and time here" onChange={setday}/>
                     </div><br/>
                     <button className="btn btn-dark" onClick={addNewTask}>SaveTask</button>
                 </from>
