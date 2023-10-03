@@ -13,9 +13,7 @@ function ListRendering() {
         fetch("https://fakestoreapi.com/products")
             .then((response) => response.json())
             .then(data => setProducts(data));
-
     }
-
     return <>
         <h3>List Rendrering</h3>
         <div className="row">
@@ -23,16 +21,11 @@ function ListRendering() {
                 products.map((product) => {
                     console.log(product.image);
                     return <div key={product.id} className="col-md-4">
-
                         <img className="image" src={product.image} alt="product image is not available"/>
                         <div>
                             <span>Title{product.title}</span><br/>
-                            
                         </div>
-
                     </div>
-
-
                 })
             }
         </div>

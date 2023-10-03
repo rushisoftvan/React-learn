@@ -12,6 +12,9 @@ import HeaderComonent from "./Components/HeaderComonent";
 import TasksComponent from "./Components/TasksComponent";
 import AddTask from "./Components/AddTask";
 import UpdateTaskComponent from "./Components/UpdateTaskComponent";
+import {Context} from "./Components/contextapi/Context";
+import Routing from "./Components/Routing/Routing";
+
 
 
 
@@ -85,36 +88,38 @@ let App = ()=> {
   return (
     <Fragment>
       <h1 className="text-center bg-black text-white">Root App</h1>
-      {/*<MessageCard item="Mobile"/>*/}
-      {/*<ShoppingComponents/>*/}
-      {/*  <Product/>*/}
-        <div className="row">
-           <div className="col-md-4">
-               <ConditionalRendering/>
-           </div>
-            <div className="col-md-8">
-                <ListRendering/>
-            </div>
-        </div>
-            <ParentComponent/>
-        <ContactApp/>
-     <FormComponent/>
+     {/* /!*<MessageCard item="Mobile"/>*!/*/}
+     {/* /!*<ShoppingComponents/>*!/*/}
+     {/* /!*  <Product/>*!/*/}
+     {/*   <div className="row">*/}
+     {/*      <div className="col-md-4">*/}
+     {/*          <ConditionalRendering/>*/}
+     {/*      </div>*/}
+     {/*       <div className="col-md-8">*/}
+     {/*           <ListRendering/>*/}
+     {/*       </div>*/}
+     {/*   </div>*/}
+     {/*       <ParentComponent/>*/}
+     {/*   <ContactApp/>*/}
+     {/*<FormComponent/>*/}
 
-             {/*<LifeCycleMethod/>*/}
+     {/*        /!*<LifeCycleMethod/>*!/*/}
 
-        <div className="container">
-            <HeaderComonent/>
+     {/*   <div className="container">*/}
+     {/*       <HeaderComonent/>*/}
 
-                {
-                    isEdit===false?
-                        <AddTask addTask={addTask}/>
+     {/*           {*/}
+     {/*               isEdit===false?*/}
+     {/*                   <AddTask addTask={addTask}/>*/}
 
-                        :<UpdateTaskComponent sendTaskForEdit={sendTaskForEdit()} editTask={editTask}/>
-                }
+     {/*                   :<UpdateTaskComponent sendTaskForEdit={sendTaskForEdit()} editTask={editTask}/>*/}
+     {/*           }*/}
 
 
-            <TasksComponent tasks={tasks} onDelete={deletetask} isEditHanlder={isEditHandler}/>
-        </div>
+     {/*       <TasksComponent tasks={tasks} onDelete={deletetask} isEditHanlder={isEditHandler}/>*/}
+     {/*   </div>*/}
+     {/*   <Context/>*/}
+        <Routing/>
 
 
 

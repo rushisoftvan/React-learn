@@ -22,3 +22,10 @@ code {
   font-size: larger;
 
 }
+
+.context{
+  border: solid 1px ;
+}
+.acomponent{
+  border: solid 1px
+}

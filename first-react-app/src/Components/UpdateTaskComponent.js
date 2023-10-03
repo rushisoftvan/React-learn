@@ -33,8 +33,6 @@ function UpdateTaskComponent(props){
            props.editTask(updatetask);
 
        }
-
-
     return(
         <>
             <h3>Update Component</h3>
