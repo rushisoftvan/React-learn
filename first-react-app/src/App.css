@@ -45,4 +45,11 @@
  box-shadow: 0 0 10px black;
  margin-bottom: 10px;
 }
+.active{
+  color: #61dafb;
+
+}
+.decoration{
+  text-decoration: none;
+}
 
