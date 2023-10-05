@@ -1,4 +1,5 @@
 import {useLocation, useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 
 function About(){
@@ -6,9 +7,14 @@ function About(){
     const location = useLocation();
     console.log(location);
 
-    function handleClick(){
-        navigate("/home")
-    }
+     let handleClick = ()=>{
+         navigate("/home");
+     }
+     let handleEvent = ()=>{
+         console.log("rus");
+     }
+      useEffect(()=>{handleEvent()},[]);
+
    return(
        <>
            <h3>About</h3>
