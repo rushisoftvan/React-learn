@@ -1,6 +1,6 @@
 import './App.css';
 
-import {Fragment, useState} from 'react';
+import React, {Fragment, useState} from 'react';
 import ConditionalRendering from "./Components/ConditionalRendering";
 import ListRendering from "./Components/ListRendering";
 import ParentComponent from "./Components/ParentComponent";
@@ -14,6 +14,11 @@ import AddTask from "./Components/AddTask";
 import UpdateTaskComponent from "./Components/UpdateTaskComponent";
 import {Context} from "./Components/contextapi/Context";
 import Routing from "./Components/Routing/Routing";
+import JqueryAjaxDemo from "./Components/RequestApi/JqueryAjaxDemo";
+import AxoisDemo from "./Components/RequestApi/AxoisDemo";
+import FormikValidation from "./Components/FormikForm/FormikValidation";
+import FormikDemo from "./Components/FormikForm/FormikDemo";
+import YapValidation from "./Components/FormikForm/YapValidation";
 
 
 
@@ -88,9 +93,9 @@ let App = ()=> {
   return (
     <Fragment>
       <h1 className="text-center bg-black text-white">Root App</h1>
-     {/* /!*<MessageCard item="Mobile"/>*!/*/}
-     {/* /!*<ShoppingComponents/>*!/*/}
-     {/* /!*  <Product/>*!/*/}
+      {/*<MessageCard item="Mobile"/>*/}
+      {/*<ShoppingComponents/>*/}
+      {/*  <Product/>*/}
      {/*   <div className="row">*/}
      {/*      <div className="col-md-4">*/}
      {/*          <ConditionalRendering/>*/}
@@ -120,6 +125,8 @@ let App = ()=> {
      {/*   </div>*/}
      {/*   <Context/>*/}
         <Routing/>
+        {/*<FormikDemo/>*/}
+        <YapValidation/>
 
 
 

@@ -14,6 +14,7 @@ function ListRendering() {
             .then((response) => response.json())
             .then(data => setProducts(data));
     }
+
     return <>
         <h3>List Rendrering</h3>
         <div className="row">

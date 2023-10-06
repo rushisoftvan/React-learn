@@ -12,7 +12,5 @@ function StateExample(){
          <h4>state2</h4>
         </>
     );
-
 }
-
 export default StateExample;

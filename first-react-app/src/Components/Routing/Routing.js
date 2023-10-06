@@ -47,7 +47,7 @@ function Routing() {
                     <Routes>
                         <Route path="/" element={
                             <PrivateRoute>
-                            <Home/>
+                                <Home/>
                             </PrivateRoute>
                         }/>
                         <Route path="/home" element={

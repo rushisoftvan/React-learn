@@ -9,7 +9,6 @@ function UpdateTaskComponent(props){
        })
 
        function setText(e){
-
            setUpdateTask(
                {
                    id:updatetask.id,
@@ -18,7 +17,6 @@ function UpdateTaskComponent(props){
                }
            );
        }
-
        function setDay(e){
            setUpdateTask(
                {
