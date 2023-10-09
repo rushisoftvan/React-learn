@@ -11,6 +11,7 @@ function LogOut() {
     }
 
     return <>
+
         <button onClick={logOut}>Logout</button>
     </>
 

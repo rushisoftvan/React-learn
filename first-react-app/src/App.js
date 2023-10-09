@@ -19,10 +19,11 @@ import AxoisDemo from "./Components/RequestApi/AxoisDemo";
 import FormikValidation from "./Components/FormikForm/FormikValidation";
 import FormikDemo from "./Components/FormikForm/FormikDemo";
 import YapValidation from "./Components/FormikForm/YapValidation";
-
-
-
-
+import UseRefComponent from "./Components/UseRefComponent";
+import ProductListComponent from "./Components/ProductModule/ProductListComponent";
+import ProductModuleComponent from "./Components/ProductModule/ProductModuleComponent";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 let App = ()=> {
@@ -126,8 +127,10 @@ let App = ()=> {
      {/*   <Context/>*/}
         <Routing/>
         {/*<FormikDemo/>*/}
-        <YapValidation/>
 
+        {/*<UseRefComponent/>*/}
+        {/*<ProductListComponent/>*/}
+        <ProductModuleComponent/>
 
 
     </Fragment>
