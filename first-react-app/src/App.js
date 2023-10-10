@@ -5,9 +5,7 @@ import ConditionalRendering from "./Components/ConditionalRendering";
 import ListRendering from "./Components/ListRendering";
 import ParentComponent from "./Components/ParentComponent";
 import ContactApp from "./Components/ContactApp";
-
 import FormComponent from "./Components/FormComponent";
-
 import HeaderComonent from "./Components/HeaderComonent";
 import TasksComponent from "./Components/TasksComponent";
 import AddTask from "./Components/AddTask";
@@ -21,12 +19,20 @@ import FormikDemo from "./Components/FormikForm/FormikDemo";
 import YapValidation from "./Components/FormikForm/YapValidation";
 import UseRefComponent from "./Components/UseRefComponent";
 import ProductListComponent from "./Components/ProductModule/ProductListComponent";
-import ProductModuleComponent from "./Components/ProductModule/ProductModuleComponent";
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ProductModuleComponent from "./Components/ProductModule/ProductModuleComponent";
+
+import Modal from "./Components/ProductModule/Modal";
+
+
 
 
 let App = ()=> {
+    const [basicModal, setBasicModal] = useState(false);
+
+    const toggleShow = () => setBasicModal(!basicModal);
          const[editId,setEditId] = useState();
         const[tasks , setTasks]= useState([
         {
@@ -72,6 +78,10 @@ let App = ()=> {
     }
     function sendTaskForEdit(){
          return tasks.find((task)=> task.id===editId);
+    }
+
+    function modalToggale(){
+
     }
 
     function isEditHandler(isEdit,taskid)
@@ -131,8 +141,9 @@ let App = ()=> {
         {/*<UseRefComponent/>*/}
         {/*<ProductListComponent/>*/}
         <ProductModuleComponent/>
-
-
+         <Modal/><br/>
+        <button onClick={toggleShow}>modal</button>
+        <ToastContainer position="top-center" />
     </Fragment>
   );
 }

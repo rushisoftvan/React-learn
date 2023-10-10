@@ -3,6 +3,8 @@ import Product from "../Routing/Product";
 import React from "react";
 import ProductListComponent from "./ProductListComponent";
 import AddProductComponent from "./AddProductComponent";
+import UpdateProductComponent from "./UpdateProductComponent";
+
 
 function ProductModuleComponent(){
     return(
@@ -12,6 +14,8 @@ function ProductModuleComponent(){
                 <Route path="/" element={<ProductListComponent/>}/>
                 <Route path="addproduct" element={<AddProductComponent/>}/>
                 <Route path="products" element={<ProductListComponent/>}/>
+                <Route path="update/:id" element={<UpdateProductComponent/>}/>
+
             </Routes>
 
         </>

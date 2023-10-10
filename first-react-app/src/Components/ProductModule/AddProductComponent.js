@@ -2,6 +2,7 @@ import {useFormik} from "formik";
 import * as yup from "yup";
 import ProductService from "./ProductService";
 import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 function AddProductComponent(){
     const navigate = useNavigate();
@@ -28,6 +29,7 @@ function AddProductComponent(){
             ProductService.addProduct(sendProduct).then((res)=>{
                 if(res.data.statusCode==201){
                     navigate("/products");
+                    toast("product added successfully");
                 }
             })
         }
