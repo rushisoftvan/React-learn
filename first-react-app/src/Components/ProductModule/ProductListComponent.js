@@ -1,14 +1,17 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import ProductService from "./ProductService";
 import productService from "./ProductService";
 import {useNavigate} from "react-router-dom";
 import {ToastContainer} from "react-toastify";
+import Modal from "./Modal";
 
 
 function ProductListComponent() {
     const [productList, setProductsList] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [modalShow,setModalShow] =useState(false);
     const navigate = useNavigate();
+    const pId = useRef();
     useEffect(() => {
             setLoading(true);
             ProductService.getProducts()
@@ -23,20 +26,21 @@ function ProductListComponent() {
 
         , []);
 
-    function handleDelete(productId) {
+    function handleDelete() {
         //ProductService.deleteProduct(productId)
-        console.log(productId);
-        if (window.confirm("Do you want to delete?")) {
-            productService.deleteProduct(productId).then((res)=>{
-                if(res.data.statusCode==200){
-                    let updatedProducts = [...productList].filter((product)=>product.productId !== productId);
-                    console.log(updatedProducts);
-                    setProductsList(updatedProducts);
+
+        console.log(pId);
+
+             productService.deleteProduct(pId.current).then((res)=>{
+                 if(res.data.statusCode==200){
+                     let updatedProducts = [...productList].filter((product)=>product.productId !==pId.current);
+                   console.log(updatedProducts);
+                     setProductsList(updatedProducts);
                 }
 
             });
 
-        }
+
     }
 
     function handleEdit(productId) {
@@ -52,9 +56,21 @@ function ProductListComponent() {
         navigate("/addproduct");
     }
 
+    function showModal(id){
+        setModalShow(true);
+        pId.current = id;
+        console.log(pId);
+
+
+    }
+    function hideModal(){
+        setModalShow(false);
+    }
+
 
     return (
            <div className="container">
+               <Modal show={modalShow} hideModal={hideModal}  handleDelete={handleDelete}/><br/>
                <h3 className="bg-primary text-center text-white">Product-List</h3>
                <button className="btn btn-success" onClick={handleAddProduct}>AddProduct</button><br/>
                <div className="row mt-3">
@@ -72,9 +88,8 @@ function ProductListComponent() {
                                                handleEdit(product.productId);
                                            }}>Edit
                                            </button>
-                                           <button className="ms-1 btn btn-primary" onClick={() => {
-                                               handleDelete(product.productId)
-                                           }}>Delete
+                                           <button className="ms-1 btn btn-primary" onClick={()=>{showModal(product.productId)}}
+                                           >Delete
                                            </button>
                                        </div>
                                    </div>
@@ -84,6 +99,8 @@ function ProductListComponent() {
                            : <p>PRODUCT NOT AVAILABLE</p>
                    }
                </div>
+
+
 
            </div>
 

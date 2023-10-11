@@ -4,6 +4,7 @@ import React from "react";
 import ProductListComponent from "./ProductListComponent";
 import AddProductComponent from "./AddProductComponent";
 import UpdateProductComponent from "./UpdateProductComponent";
+import Modal from "./Modal";
 
 
 function ProductModuleComponent(){
@@ -15,6 +16,7 @@ function ProductModuleComponent(){
                 <Route path="addproduct" element={<AddProductComponent/>}/>
                 <Route path="products" element={<ProductListComponent/>}/>
                 <Route path="update/:id" element={<UpdateProductComponent/>}/>
+                <Route path="modal/:id" element={<Modal/>}/>
 
             </Routes>
 

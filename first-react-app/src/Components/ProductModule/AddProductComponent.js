@@ -29,7 +29,7 @@ function AddProductComponent(){
             ProductService.addProduct(sendProduct).then((res)=>{
                 if(res.data.statusCode==201){
                     navigate("/products");
-                    toast("product added successfully");
+                    toast("product added successfully",{position:toast.POSITION.TOP_CENTER,theme:"colored",autoClose:1000});
                 }
             })
         }

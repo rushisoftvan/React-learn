@@ -25,6 +25,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import ProductModuleComponent from "./Components/ProductModule/ProductModuleComponent";
 
 import Modal from "./Components/ProductModule/Modal";
+import Reducer from "./Components/reducer/Reducer";
+import CallBack from "./Components/USECALLBACK/CallBack";
 
 
 
@@ -54,6 +56,7 @@ let App = ()=> {
 
         const[isEdit,setIsEdit]=useState(false);
 
+
     function deletetask(t){
 
         const data = tasks.filter((task)=> task.id!==t.id);
@@ -80,9 +83,7 @@ let App = ()=> {
          return tasks.find((task)=> task.id===editId);
     }
 
-    function modalToggale(){
 
-    }
 
     function isEditHandler(isEdit,taskid)
     {
@@ -101,9 +102,10 @@ let App = ()=> {
         console.log(tasks);
     }
 
+
   return (
     <Fragment>
-      <h1 className="text-center bg-black text-white">Root App</h1>
+      {/*<h1 className="text-center bg-black text-white">Root App</h1>*/}
       {/*<MessageCard item="Mobile"/>*/}
       {/*<ShoppingComponents/>*/}
       {/*  <Product/>*/}
@@ -135,15 +137,18 @@ let App = ()=> {
      {/*       <TasksComponent tasks={tasks} onDelete={deletetask} isEditHanlder={isEditHandler}/>*/}
      {/*   </div>*/}
      {/*   <Context/>*/}
-        <Routing/>
+     {/*   <Routing/>*/}
         {/*<FormikDemo/>*/}
 
         {/*<UseRefComponent/>*/}
         {/*<ProductListComponent/>*/}
-        <ProductModuleComponent/>
-         <Modal/><br/>
-        <button onClick={toggleShow}>modal</button>
+        {/*<ProductModuleComponent/>*/}
+
+
+        {/*/!*<button onClick={toggleShow}>modal</button>*!/*/}
         <ToastContainer position="top-center" />
+        {/*<Reducer/>*/}
+        <CallBack/>
     </Fragment>
   );
 }

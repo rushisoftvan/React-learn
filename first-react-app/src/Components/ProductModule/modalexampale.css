@@ -1,0 +1,29 @@
+.close {
+    cursor: pointer;
+}
+
+.modalmain{
+    background: white;
+    width:60%;
+    border-radius: initial;
+    position: absolute;
+    left: 198px;
+    top: 270px;
+    z-index: 131;
+
+}
+
+.modalheader{
+    background: #2b78e2;
+    text-align: end;
+    font-size: xx-large;
+}
+.modalbody{
+    display: flex;
+    justify-content: center;
+}
+.modalfooter{
+    display: flex;
+    justify-content: space-around;
+}
+
