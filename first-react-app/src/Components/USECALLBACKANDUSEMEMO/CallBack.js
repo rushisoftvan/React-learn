@@ -1,5 +1,10 @@
 import ChildComponent from "./ChildComponent";
-import {useCallback, useState} from "react";
+import {useCallback, useMemo, useState} from "react";
+import ChildComponentOne from "./ChildComponentOne";
+
+function ChildComponent1() {
+    return null;
+}
 
 function CallBack(){
     const[state,setState] = useState(0);
@@ -12,6 +17,13 @@ function CallBack(){
         console.log("rushikesh");
     },[]);
 
+    const name = useMemo(() => {
+              getName();
+    }, []);
+
+       function getName(){
+           return  'rushikesh';
+       }
     return(
         <>
 
@@ -20,6 +32,7 @@ function CallBack(){
             {state}
             <button onClick={pluseState}>chaneState</button>
             <ChildComponent learning={learning}/>
+            <ChildComponentOne name={name}/>
         </>
     );
 }
