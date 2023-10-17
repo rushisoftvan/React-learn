@@ -5,7 +5,7 @@ import store from "./redux/store";
 import React from "react";
 import ComponentA from "./redux/ComponentA";
 import{useSelector} from "react-redux";
-import {addCount, minusCount} from "./redux/ACTIONS/action";
+import {addCount, minusCount, multipaleCount} from "./redux/ACTIONS/action";
 
 
 
@@ -24,6 +24,7 @@ function App() {
             </div>
             <button onClick={()=>dispatch(addCount())}>+</button>
             <button onClick ={()=>dispatch(minusCount())}>-</button>
+            <button onClick={()=>dispatch(multipaleCount(5))}>Multipale</button>
         </>
 
 

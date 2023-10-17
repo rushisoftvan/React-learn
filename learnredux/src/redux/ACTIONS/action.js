@@ -1,4 +1,4 @@
-import {ADD_COUNT, MINUS_COUNT} from "./action-type";
+import {ADD_COUNT, MINUS_COUNT, MULTIPALE_COUNT} from "./action-type";
 
  const addCount = ()=>{
     return {
@@ -11,4 +11,11 @@ import {ADD_COUNT, MINUS_COUNT} from "./action-type";
         type :MINUS_COUNT
     }
 }
-export  {addCount,minusCount};
+
+const multipaleCount = (value)=>{
+     return {
+         type:MULTIPALE_COUNT,
+         payload:value
+     }
+}
+export  {addCount,minusCount,multipaleCount};
