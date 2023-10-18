@@ -1,7 +1,7 @@
-import {useDispatch} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 
-function ComponentA(){
-
+function ComponentA(props){
+  console.log(props,"componentOne");
 
     return (
         <>
@@ -12,7 +12,6 @@ function ComponentA(){
 
 }
 
-const mapDispacthtoProps =(dispacth)=>({
 
-})
+
 export default ComponentA;

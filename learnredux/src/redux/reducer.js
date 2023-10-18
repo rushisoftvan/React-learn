@@ -1,12 +1,18 @@
 //
 
-import {ADD_COUNT, MINUS_COUNT, MULTIPALE_COUNT} from "./ACTIONS/action-type";
+import {ADD_COUNT, MINUS_COUNT, MULTIPALE_COUNT, SHOW_USER} from "./ACTIONS/action-type";
 const initialState = {
-    count : 0
+    count : 0,
+    user:{
+          // userId:"",
+          // title:"",
+          // completed:""
+    }
 }
 
 const reducer = (state=initialState,action)=>{
-    console.log(state.count);
+    console.log(action.type);
+    console.log(action.payload);
   switch(action.type){
       case  ADD_COUNT :
           return  {
@@ -20,6 +26,16 @@ const reducer = (state=initialState,action)=>{
           return {
               ...state,count:state.count*action.payload
           }
+      case SHOW_USER :
+          return {
+
+                ...state,user : action.payload
+              }
+
+
+
+
+
       default : return state;
   }
 }

@@ -1,4 +1,5 @@
 import {ADD_COUNT, MINUS_COUNT, MULTIPALE_COUNT} from "./action-type";
+import axios from "axios";
 
  const addCount = ()=>{
     return {
@@ -18,4 +19,22 @@ const multipaleCount = (value)=>{
          payload:value
      }
 }
-export  {addCount,minusCount,multipaleCount};
+
+ const getData = ()=>{
+     return (dispacth)=>{
+
+        axios.get('https://jsonplaceholder.typicode.com/todos/1')
+            .then((res)=>{
+                console.log(res.data);
+               dispacth({
+                   type:"SHOW_USER",
+                   payload:res.data
+               })
+            })
+            .catch(error =>{console.log(error)})
+     }
+
+
+}
+
+export  {addCount,minusCount,multipaleCount,getData};

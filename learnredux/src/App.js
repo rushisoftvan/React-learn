@@ -1,30 +1,69 @@
 import logo from './logo.svg';
 import './App.css';
 import {Provider, useDispatch} from "react-redux";
-import store from "./redux/store";
-import React from "react";
+import {connect} from "react-redux";
+import React, {useEffect} from "react";
 import ComponentA from "./redux/ComponentA";
 import{useSelector} from "react-redux";
 import {addCount, minusCount, multipaleCount} from "./redux/ACTIONS/action";
+import ComponentOne from "./Components/ComponentOne";
+import {showUser} from "./redux/ACTIONS/productaction";
+import {CHANGE_PRICE_BY_ID, SHOW_USER} from "./redux/ACTIONS/product_type";
+import {ADD_COUNT} from "./redux/ACTIONS/action-type";
 
 
 
 
 
 
-function App() {
+function App(props) {
+    console.log(props);
      const count =useSelector((state)=> state.count)
-    const dispatch=useDispatch();
+    console.log(count,"rushikesh");
+    //const dispatch=useDispatch();
+     const ListOfproduct =  useSelector((products) => products.productList);
+      console.log(ListOfproduct);
+  const changePrice = ()=>{
+
+      props.increaseCount();
+  }
+  const showUser = ()=>{
+     console.log(props.product);
+  }
+  const showProductById = ()=>{
+      props.showProductById(1);
+  }
+
+
+
   return (
+
         <>
             <div className="App">
 
                 <h5>root</h5>
-                {count}
+
+                {props.reducer.count}
+                {props.product.productList.map(product=>{
+
+                    return         <>
+                                 <p>{product.productName} </p>
+                                 <p>{product.productPrice}</p>
+                             </>
+
+                })}
+
+            {/*</div>*/}
+            {/*<button onClick={()=>dispatch(addCount())}>+</button>*/}
+            {/*<button onClick ={()=>dispatch(minusCount())}>-</button>*/}
+            {/*<button onClick={()=>dispatch(multipaleCount(5))}>Multipale</button>*/}
+              <button onClick={changePrice}>changeProductPrice</button>
+                <button onClick={showUser}>showUser</button>
+                <button onClick = {showProductById}>ById</button>
+
+            <ComponentOne/>
+
             </div>
-            <button onClick={()=>dispatch(addCount())}>+</button>
-            <button onClick ={()=>dispatch(minusCount())}>-</button>
-            <button onClick={()=>dispatch(multipaleCount(5))}>Multipale</button>
         </>
 
 
@@ -32,4 +71,24 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = ((state)=>{
+    console.log(state);
+   return state;
+});
+
+
+
+const mapDispacthToPropes = (dispatch)=>{
+     return{
+         increaseCount : ()=>{
+             dispatch({type:"ADD_COUNT"})},
+         showUser: ()=>{dispatch({type:"SHOW_USER"})},
+         showProductById : (id)=>{dispatch({type:"CHANGE_PRICE_BY_ID",payload:id})}
+
+
+
+     }
+
+}
+
+export default connect(mapStateToProps,mapDispacthToPropes) (App);
