@@ -11,6 +11,11 @@ import {showUser} from "./redux/ACTIONS/productaction";
 import {CHANGE_PRICE_BY_ID, SHOW_USER} from "./redux/ACTIONS/product_type";
 import {ADD_COUNT} from "./redux/ACTIONS/action-type";
 
+import {ToastContainer} from "react-toastify";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Patient from "./PatientMoule/Patient";
+
 
 
 
@@ -39,30 +44,32 @@ function App(props) {
   return (
 
         <>
-            <div className="App">
+            <div className="app container mt-1 text-center">
 
-                <h5>root</h5>
+                {/*<h5>root</h5>*/}
 
-                {props.reducer.count}
-                {props.product.productList.map(product=>{
+            {/*    {props.reducer.count}*/}
+            {/*    {props.product.productList.map(product=>{*/}
 
-                    return         <>
-                                 <p>{product.productName} </p>
-                                 <p>{product.productPrice}</p>
-                             </>
+            {/*        return         <>*/}
+            {/*                     <p>{product.productName} </p>*/}
+            {/*                     <p>{product.productPrice}</p>*/}
+            {/*                 </>*/}
 
-                })}
+            {/*    })}*/}
 
-            {/*</div>*/}
-            {/*<button onClick={()=>dispatch(addCount())}>+</button>*/}
-            {/*<button onClick ={()=>dispatch(minusCount())}>-</button>*/}
-            {/*<button onClick={()=>dispatch(multipaleCount(5))}>Multipale</button>*/}
-              <button onClick={changePrice}>changeProductPrice</button>
-                <button onClick={showUser}>showUser</button>
-                <button onClick = {showProductById}>ById</button>
+            {/*/!*</div>*!/*/}
+            {/*/!*<button onClick={()=>dispatch(addCount())}>+</button>*!/*/}
+            {/*/!*<button onClick ={()=>dispatch(minusCount())}>-</button>*!/*/}
+            {/*/!*<button onClick={()=>dispatch(multipaleCount(5))}>Multipale</button>*!/*/}
+            {/*  <button onClick={changePrice}>changeProductPrice</button>*/}
+            {/*    <button onClick={showUser}>showUser</button>*/}
+            {/*    <button onClick = {showProductById}>ById</button>*/}
 
-            <ComponentOne/>
-
+            {/*<ComponentOne/>*/}
+            {/*    <ProductModule/>*/}
+                <Patient/>
+                <ToastContainer position="top-center"/>
             </div>
         </>
 
@@ -71,24 +78,24 @@ function App(props) {
   );
 }
 
-const mapStateToProps = ((state)=>{
-    console.log(state);
-   return state;
-});
+// const mapStateToProps = ((state)=>{
+//     console.log(state);
+//    return state;
+// });
 
 
 
-const mapDispacthToPropes = (dispatch)=>{
-     return{
-         increaseCount : ()=>{
-             dispatch({type:"ADD_COUNT"})},
-         showUser: ()=>{dispatch({type:"SHOW_USER"})},
-         showProductById : (id)=>{dispatch({type:"CHANGE_PRICE_BY_ID",payload:id})}
+// const mapDispacthToPropes = (dispatch)=>{
+//      return{
+//          increaseCount : ()=>{
+//              dispatch({type:"ADD_COUNT"})},
+//          showUser: ()=>{dispatch({type:"SHOW_USER"})},
+//          showProductById : (id)=>{dispatch({type:"CHANGE_PRICE_BY_ID",payload:id})}
+//
+//
+//
+//      }
 
 
 
-     }
-
-}
-
-export default connect(mapStateToProps,mapDispacthToPropes) (App);
+export default  App;

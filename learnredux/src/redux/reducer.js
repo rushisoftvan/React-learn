@@ -4,9 +4,7 @@ import {ADD_COUNT, MINUS_COUNT, MULTIPALE_COUNT, SHOW_USER} from "./ACTIONS/acti
 const initialState = {
     count : 0,
     user:{
-          // userId:"",
-          // title:"",
-          // completed:""
+
     }
 }
 
