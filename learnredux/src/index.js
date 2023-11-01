@@ -5,11 +5,11 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Provider} from "react-redux";
+// import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter} from "react-router-dom";
-import productStore from "./ProductModule/Redux/productStore";
+import {PersistGate} from "redux-persist/integration/react";
 import {PatientStore} from "./PatientMoule/Redux/PatientStore";
-
 
 
 
@@ -17,7 +17,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
       <BrowserRouter>
           <Provider store={PatientStore}>
+
               <App/>
+
           </Provider>
       </BrowserRouter>
 

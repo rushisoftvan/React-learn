@@ -1,16 +1,35 @@
-function PrivateRoute({children,props}){
+import {Navigate} from "react-router-dom";
+import {connect} from "react-redux";
+import React from "react";
+import {checkIsLogedIn} from "./service/authService";
 
-    return (
-        <>
-            localStorage.getItem("item") ===  ? children : <Navigate to="/login"/>
-         </>);
+function PrivateRoute({children}){
+ console.log("private Route")
+
+
+ return checkIsLogedIn()?children : <Navigate to="/login"/>
+
+    // return (
+    //     <>
+    //         {
+    //
+    //             //localStorage.getItem("root") ==auth ? children : <Navigate to="/login"/>
+    //             (
+    //                 //localStorage.getItem("token")===true ? children : <Navigate to="/login"/>
+    //             return authService.isLoggedIn() ? children : <Navigate to="/login" />
+    //             )
+    //
+    //         }
+    //
+    //      </>);
 
 }
 
 const mapStateToProps = (state) => {
     return {
-        state
+        auth :  state.isLogged
+
     }
 }
 
-export default c PrivateRoute;
+export default connect(mapStateToProps,null)(PrivateRoute);

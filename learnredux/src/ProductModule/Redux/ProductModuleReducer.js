@@ -1,5 +1,5 @@
 
-import {ADD_PRODUCT, DELETE_PRODUCT, GET_PRODUCT_BY_ID, MAKE_REQUEST, PRODUCT_LIST} from "./producttype";
+import {ADD_PRODUCT,  GET_PRODUCT_BY_ID, MAKE_REQUEST, PRODUCT_LIST} from "./producttype";
 const initialstate = {
     loading: true,
     productList: [],

@@ -76,11 +76,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loaduser: () =>{
+        showPatient: () =>{
             dispatch(fetchProductList())
-        },
-        remove : (id)=>{
-            dispatch(removeProduct(id));
         }
 
     }

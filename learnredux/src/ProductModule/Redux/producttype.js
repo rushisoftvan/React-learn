@@ -1,7 +1,9 @@
 export const PRODUCT_LIST = 'PRODUCT_LIST';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const MAKE_REQUEST = 'MAKE_REQUEST';
-export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+
+export const DELETE_PRODUCT ="DELETE_PRODUCT";
+
 export const UPDATE_PRODUCT = 'UPDATE_USER';
 
 export const GET_PRODUCT_BY_ID = 'GET_PRODUCT_BY_ID';

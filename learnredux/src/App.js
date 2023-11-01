@@ -14,7 +14,14 @@ import {ADD_COUNT} from "./redux/ACTIONS/action-type";
 import {ToastContainer} from "react-toastify";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import {Route, Routes} from "react-router-dom";
+import Login from "./PatientMoule/Login";
+import PrivateRoute from "./PatientMoule/PrivateRoute";
+import Patients from "./PatientMoule/Patients";
+import AddProduct from "./PatientMoule/./AddPatient";
 import Patient from "./PatientMoule/Patient";
+import DeleteModel from "./PatientMoule/Models/DeleteModel";
 
 
 
@@ -44,8 +51,9 @@ function App(props) {
   return (
 
         <>
-            <div className="app container mt-1 text-center">
-
+            <div className=" text-center">
+             {/*<DeleteModel/>*/}
+              <Patient/>
                 {/*<h5>root</h5>*/}
 
             {/*    {props.reducer.count}*/}
@@ -68,7 +76,6 @@ function App(props) {
 
             {/*<ComponentOne/>*/}
             {/*    <ProductModule/>*/}
-                <Patient/>
                 <ToastContainer position="top-center"/>
             </div>
         </>
