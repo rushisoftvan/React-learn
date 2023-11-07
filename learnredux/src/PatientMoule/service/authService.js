@@ -24,6 +24,7 @@ const getUserRole = () => {
 }
 
 export const  checkIsLogedIn = () => {
+    console.log("checkIsLogedIn")
     const token = getToken();
     console.log(token);
     if(token){

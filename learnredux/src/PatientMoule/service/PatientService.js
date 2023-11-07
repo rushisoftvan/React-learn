@@ -84,7 +84,13 @@ export async function updatePatientUseById(patient,id){
     return await axiosInstance.put(`patients/${id}`,patient,config);
 }
 
-export async function getPatientsByPage(page){
+export async function getPatientsByPage(index,searchText){
+    const newPage = {
+        pageNumber:index,
+        pageSize:5,
+        searchText: searchText
+    }
+    console.log("pag api call");
     const config = {
         headers: {
             'Authorization': `Bearer ${sessionStorage.getItem("token")}`,
@@ -93,5 +99,7 @@ export async function getPatientsByPage(page){
         }
 
 }
-    return await axios.post("patients/page",page,config);
+    return await axiosInstance.post("patients/serach",newPage,config);
 }
+
+

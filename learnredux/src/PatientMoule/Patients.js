@@ -1,32 +1,89 @@
 import {connect} from "react-redux";
 
 import React, {useEffect, useRef, useState} from "react";
-import {fetchPatients, removePatient} from "./Redux/PatientAction";
-import {useNavigate} from "react-router-dom";
+import {fetchPatients, fetchPatientsBasedOnPage, removePatient} from "./Redux/PatientAction";
+import {json, useNavigate} from "react-router-dom";
 import DeleteModel from "./Models/DeleteModel";
-import {IS_POP_UP_OPEN} from "./Redux/PatientActiopntype";
+import {DICURRUNTPAGE, INCURRUNTPAGE, IS_POP_UP_OPEN, LODERSTATESCHANGE, PAGEDATA} from "./Redux/PatientActiopntype";
 import {current} from "@reduxjs/toolkit";
 import {Button, InputGroup, Pagination} from "react-bootstrap";
 import Form from 'react-bootstrap/Form';
+import {deletePatient, getPatientsByPage} from "./service/PatientService";
+import {toast} from "react-toastify";
+import SpinnerExample from "./Models/SpinnerExample";
+import tr from "react-datepicker";
+
 
 function Patients(props){
+    // const [data,setData]  = useState([]);
+    // const[noOfpage,setNoOfPage] = useState(0);
+    // const[pageNo,setPageNo] = useState();
+    // const[lastPage,setLastPage]  = useState();
 
-  
-    console.log("patients");
+
+
+
     const navigate =useNavigate();
-    console.log(props.state.patients);
+    // console.log(props.state.patients);
     const idDelete = useRef(null);
+    const[searchValue,setSerachValue]=useState("");
+       const[id,setId] =useState();
 
     useEffect(() => {
         console.log("useEffect");
-        props.showPatients();
+        // props.showPatients();
+        // props.lodingProcess();
+        props.showPatientsPage(1);
+        navigate("/patients");
     }, []);
+    // useEffect(()=>{
+    //     //
+    //     console.log("useEffect 2 start")
+    //     getPatientsByPage().then((res)=>{
+    //         console.log(res);
+    //         console.log(res.data.data.patientlist);
+    //         setData(res.data.data.patientlist);
+    //         setNoOfPage(res.data.data.totalPage);
+    //         setPageNo(res.data.data.pageNo);
+    //          // setPageNo(res.data.data.)
+    //         setLastPage(res.data.data.lastPage);
+    //     });
+    // },[])
+       function serachHandler(){
+       console.log("serachHandler");
+       props.showPatientsPage(1,searchValue);
+   }
+   const onChangeHandler = (e)=>{
+       setSerachValue(e.target.value.trim());
+       console.log(searchValue);
+    }
+
     function navigateToAddPatient(){
         navigate("/addpatient");
     }
     function deletePatientByIdHandler(){
-        props.removePatientHandler(idDelete.current);
-        navigate("/patients");
+       // props.removePatientHandler(idDelete.current,navigate);
+        deletePatient(idDelete.current).then((res)=>{
+            console.log(res);
+            if(res.data.code==200){
+                 toast.success("Patient has been deleted");
+                props.showPatientsPage(props.state.pageNo);
+                 navigate("/patients");
+            }
+        });
+
+
+
+    }
+    function changePage(index)
+    {
+        console.log(index);
+
+        // getPatientsByPage(index).then((res)=>{
+        //     console.log(res);
+        // });
+        props.showPatientsPage(index,searchValue);
+        window.scroll(0,0);
 
     }
 
@@ -34,6 +91,27 @@ function Patients(props){
         props.showDeletePopUp();
         idDelete.current=id;
         console.log(idDelete.current);
+    }
+
+    function handlePre(){
+         console.log("handle");
+          // console.log("handle");
+        if(props.state.pageNo<props.state.totalPage){
+            props.incrementPageNo();
+
+
+                changePage(props.state.pageNo+1);
+
+
+
+        }
+
+    }
+    function handleNext(){
+        if(props.state.isFirstpage==false){
+            props.decrementPageNo();
+            changePage(props.state.pageNo-1)
+        }
     }
 
 
@@ -45,21 +123,25 @@ function Patients(props){
     }
 
     return <>
+
         {
             props.state.isDeletePopup==true?<DeleteModel dt={deletePatientByIdHandler}/>:null
         }
 
 
         <h3 className="text-center">Patients</h3>
+        {
+            props.state.loading==true?<SpinnerExample/>:null
+        }
         <div className="container">
             <div className="text-start" style = {{display: 'flex'}}>
                 <button className="btn btn-success" onClick={navigateToAddPatient}>Add Patient</button>
-                <input className="form-control w-25 ms-1" type="text" placeholder="Search by Name" required />
-                <button className="btn btn-primary">Search</button>
+                <input className="form-control w-25 ms-1" type="text" placeholder="Search by Name" required onChange={onChangeHandler} />
+                <button className="btn btn-primary" onClick={serachHandler}>Search</button>
             </div>
 
 
-            <hr className="hr" />
+            <hr className="hr"/>
             <table className="table border mt-2">
                 <thead className="thead-dark">
                 <tr>
@@ -76,9 +158,32 @@ function Patients(props){
 
                 </tr>
                 </thead>
+                {/*<tbody>*/}
+                {/*{*/}
+                {/*    props.state.patients.map((patient)=>{*/}
+                {/*        return  <tr>*/}
+
+                {/*            <td>{patient.firstName}</td>*/}
+                {/*            <td>{patient.lastName}</td>*/}
+                {/*            <td>{patient.email}</td>*/}
+                {/*            {*/}
+                {/*                patient.hasAllergy==true?<td>YES</td>:<td>NO</td>*/}
+                {/*            }*/}
+                {/*            {*/}
+                {/*                patient.hasBloodPressure==true?<td>YES</td>:<td>NO</td>*/}
+                {/*            }*/}
+                {/*            <td>{patient.dateOfBirth}</td>*/}
+                {/*            <td><button className="btn btn-primary" onClick={()=>{editHandler(patient.patientId)}} >Edit</button></td>*/}
+                {/*            <td><button className="btn btn-danger" onClick={()=>{showPopUpHandler(patient.patientId)}}>Delete</button></td>*/}
+                {/*        </tr>*/}
+                {/*    })*/}
+                {/*}*/}
+
+
+                {/*</tbody>*/}
                 <tbody>
-                {
-                    props.state.patients.map((patient)=>{
+                {     props.state.patients.length>0?
+                        props.state.patients && props.state.patients.map((patient)=>{
                         return  <tr>
 
                             <td>{patient.firstName}</td>
@@ -94,32 +199,44 @@ function Patients(props){
                             <td><button className="btn btn-primary" onClick={()=>{editHandler(patient.patientId)}} >Edit</button></td>
                             <td><button className="btn btn-danger" onClick={()=>{showPopUpHandler(patient.patientId)}}>Delete</button></td>
                         </tr>
-                    })
+
+
+
+                        }) :
+
+                        <tr>
+                    <td colSpan={8}>
+                        <label className="text-danger">Patient Not Available</label>
+                </td>
+               </tr>
                 }
-
-
                 </tbody>
             </table>
+            {
+                props.state.patients.length!==0
 
-            <div>
-                <Pagination>
-                    <Pagination.First />
-                    <Pagination.Prev />
-                    <Pagination.Item>{1}</Pagination.Item>
-                    <Pagination.Ellipsis />
+                ? <div disabled={props.state.patients.length==0}>
+                    <Pagination >
+                        <Pagination.Prev  disabled={props.state.pageNo==1} onClick={()=>{handleNext()}}>&laquo; Previous</Pagination.Prev>
+                        {
+                            [...Array(props.state.totalPage)].map((item,index)=>{
+                                    console.log(index);
 
-                    <Pagination.Item>{10}</Pagination.Item>
-                    <Pagination.Item>{11}</Pagination.Item>
-                    <Pagination.Item active>{12}</Pagination.Item>
-                    <Pagination.Item>{13}</Pagination.Item>
-                    <Pagination.Item disabled>{14}</Pagination.Item>
 
-                    <Pagination.Ellipsis />
-                    <Pagination.Item>{20}</Pagination.Item>
-                    <Pagination.Next />
-                    <Pagination.Last />
-                </Pagination>
-            </div>
+                                    return  <Pagination.Item  active={index==props.state.pageNo-1} key={index} onClick={(e)=>{changePage(index+1)}}>
+                                        {index+1}
+                                    </Pagination.Item>
+                                }
+                            )
+                        }
+
+                        <Pagination.Next disabled={props.state.lastPage==true} onClick={()=>{handlePre()}} >Next &raquo;</Pagination.Next>
+
+                    </Pagination>
+                </div> : null
+
+            }
+
         </div>
 
     </>
@@ -141,6 +258,18 @@ const mapDispatchToProps = (dispatch) => {
         },
         showDeletePopUp : ()=>{
             dispatch({type:IS_POP_UP_OPEN})
+        },
+        showPatientsPage : (index,serachText)=>{
+            dispatch(fetchPatientsBasedOnPage(index,serachText))
+        },
+        lodingProcess : ()=>{
+            dispatch({type:LODERSTATESCHANGE})
+        },
+        incrementPageNo : ()=>{
+            dispatch({type:INCURRUNTPAGE})
+        },
+        decrementPageNo : ()=>{
+            dispatch({type:DICURRUNTPAGE})
         }
 
     }

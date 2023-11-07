@@ -27,6 +27,7 @@ function  AddPatient(props){
     const navigate  = useNavigate();
 
 
+
   function onCancel(){
      // navigate("/patients");
       getPatientById().then(res=>{
@@ -36,7 +37,7 @@ function  AddPatient(props){
 
     return (<>
            <div>
-               <h3>Add Product</h3>
+               <h3>Add Patient</h3>
                <Formik initialValues={
                    {
                        firstName:'',

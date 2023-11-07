@@ -1,4 +1,4 @@
-import {Route,  Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 
 import React from "react";
 import Login from "./Login";
@@ -9,9 +9,10 @@ import AddProduct from "././AddPatient";
 import {connect} from "react-redux";
 import UpdatePatient from "./UpdatePatient";
 import DeleteModel from "./Models/DeleteModel";
+import NavHeader from "../Components/NavHeader";
 
 function Patient(props) {
-    console.log(props.state.isLogged,'sachin');
+    console.log(props.state.isLogged, 'sachin');
 
     return (
         <>
@@ -29,7 +30,7 @@ function Patient(props) {
                     </PrivateRoute>
 
                 }/>
-                <Route path ="/addpatient" element={
+                <Route path="/addpatient" element={
                     <PrivateRoute>
                         <AddProduct/>
                     </PrivateRoute>
@@ -39,8 +40,8 @@ function Patient(props) {
                         <UpdatePatient/>
                     </PrivateRoute>
 
-                } ></Route>
-                <Route path="/deleteModal"  element={<DeleteModel/>}></Route>
+                }></Route>
+                <Route path="/deleteModal" element={<DeleteModel/>}></Route>
 
             </Routes>
 
@@ -55,4 +56,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps) (Patient);
+export default connect(mapStateToProps)(Patient);

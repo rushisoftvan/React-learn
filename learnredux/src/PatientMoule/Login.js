@@ -26,6 +26,7 @@ function Login(props){
                     if(res.data.code==200){
                        // localStorage.setItem("token",res.data.data);
                         sessionStorage.setItem('token', res.data.data);
+                        
                         navigate("/patients");
                     }
                     console.log(res.data.code);
